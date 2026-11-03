@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:identifier id="pub-id">urn:isbn:9780000000002</dc:identifier>
+    <dc:title>WordPress EPUB Import Packet</dc:title>
+    <dc:creator id="creator">Migration Team</dc:creator>
+    <dc:language>en</dc:language>
+    <dc:publisher>Port Libs Press</dc:publisher>
+    <dc:date>2026-06-09</dc:date>
+    <meta property="dcterms:modified">2026-06-09T11:50:37Z</meta>
+    <meta property="rendition:layout">reflowable</meta>
+    <meta refines="#creator" property="file-as">Team, Migration</meta>
+    <link id="source-record" rel="record" href="chapter1.xhtml#opening-title" media-type="application/xhtml+xml" properties="preview" refines="#pub-id"/>
+    <link id="remote-a11y" rel="record accessibility" href="https://example.test/a11y/report.json" media-type="application/a11y+json" properties="a11y-report"/>
+  </metadata>
+  <manifest>
+    <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+    <item id="chapter1" href="chapter1.xhtml" media-type="application/xhtml+xml"/>
+    <item id="chapter2" href="chapter2.xhtml" media-type="application/xhtml+xml" properties="scripted"/>
+    <item id="cover" href="images/cover.png" media-type="image/png" properties="cover-image"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="chapter1"/>
+    <itemref idref="chapter2" linear="yes"/>
+  </spine>
+  <guide>
+    <reference type="cover" title="Cover image" href="images/cover.png"/>
+    <reference type="text" title="Start reading" href="chapter1.xhtml#opening-title"/>
+    <reference type="glossary appendix" title="Glossary" href="glossary.xhtml"/>
+    <reference title="Untyped detail" href="chapter2.xhtml#details"/>
+  </guide>
+</package>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+  <head>
+    <meta name="dtb:uid" content="urn:isbn:9780000000002"/>
+  </head>
+  <docTitle>
+    <text>WordPress EPUB Import Packet</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="np-1" playOrder="1">
+      <navLabel id="np-1-label" class="source-label" xml:lang="en" dir="ltr"><text id="np-1-text" class="source-text">Opening Packet</text></navLabel>
+      <content src="chapter1.xhtml"/>
+      <navPoint id="np-1-1" playOrder="2">
+        <navLabel><text>Opening Note</text></navLabel>
+        <content src="chapter1.xhtml#opening-note"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="np-2" playOrder="3">
+      <navLabel><text>Details</text></navLabel>
+      <content src="chapter2.xhtml#details"/>
+    </navPoint>
+  </navMap>
+</ncx>
