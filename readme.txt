@@ -12,6 +12,8 @@ Turn documents into editable WordPress blocks. Preview the result and save it as
 
 == Description ==
 
+**Collage is an experimental project.** Try it in Playground or on a test site first. Some formatting may change during import, so review the draft before publishing.
+
 Open Tools → Collage and drop in a document. Check the preview, give it a title, and save it as a draft. Open the draft in the block editor to revise it before publishing.
 
 Supported extensions: .csv, .docx, .epub, .htm, .html, .markdown, .md, .odt, .pdf, .pptx, .rtf, .txt, and .xlsx.
