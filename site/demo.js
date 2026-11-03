@@ -39,6 +39,8 @@ async function boot() {
         blueprint: {
             preferredVersions: { php: '8.4', wp: 'latest' },
             features: { intl: true },
+            // PDF conversion runs in a REST request, not an admin page.
+            constants: { WP_MEMORY_LIMIT: '512M' },
             login: true,
             landingPage: importerPath,
             steps: [
@@ -71,24 +73,43 @@ playground.then(() => {
 examples.forEach((example) => example.addEventListener('click', async () => {
     const kind = example.querySelector('.kind');
     const label = kind.dataset.label ??= kind.textContent;
-    announcer.textContent = `Added “${example.querySelector('.name').textContent}” to Collage.`;
-    kind.textContent = 'Added to Collage';
-    example.dataset.state = 'sent';
     clearTimeout(example.reset);
-    example.reset = setTimeout(() => {
+    delete example.dataset.state;
+    example.disabled = true;
+    kind.textContent = 'Opening in Collage…';
+    const name = example.querySelector('.name').textContent;
+    let file;
+    try {
+        const path = example.dataset.file;
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`Example download returned ${response.status}`);
+        file = new File([await response.blob()], path.split('/').pop());
+        const client = await playground;
+        // The frame that said "ready" may since have moved on to another page.
+        // Open Collage again in that case; it takes the file once it has loaded.
+        if (!(await client.getCurrentURL()).startsWith(importerPath)) {
+            importer = null;
+            pending.push(file);
+            await client.goTo(importerPath);
+        } else {
+            pending.push(file);
+            if (importer) send();
+        }
+        status.textContent = 'Choose a document to import it.';
+        announcer.textContent = `Sent “${name}” to Collage.`;
+        kind.textContent = 'Sent to Collage';
+        example.dataset.state = 'sent';
+        example.reset = setTimeout(() => {
+            kind.textContent = label;
+            delete example.dataset.state;
+        }, 2500);
+    } catch (error) {
+        const index = pending.indexOf(file);
+        if (index !== -1) pending.splice(index, 1);
+        console.error(error);
         kind.textContent = label;
-        delete example.dataset.state;
-    }, 2500);
-
-    const path = example.dataset.file;
-    pending.push(new File([await (await fetch(path)).blob()], path.split('/').pop()));
-    const client = await playground;
-    // The frame that said "ready" may since have moved on to another page.
-    // Open Collage again in that case; it takes the file once it has loaded.
-    if (!(await client.getCurrentURL()).startsWith(importerPath)) {
-        importer = null;
-        await client.goTo(importerPath);
-    } else if (importer) {
-        send();
+        status.textContent = `Couldn’t open “${name}”. Click the example again to retry.`;
+    } finally {
+        example.disabled = false;
     }
 }));

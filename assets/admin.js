@@ -45,7 +45,7 @@
         const entering = $('review').hidden;
         const added = entries.map((entry) => ({ id: nextId++, status: 'queued', title: '', type: null, ...entry }));
         items.push(...added);
-        if (!items.includes(selected) || !open.includes(selected.status)) selected = added[0];
+        selected = added[0];
         render();
         if (entering) focusHeading('review');
         convertNext();
@@ -129,12 +129,22 @@
 
     async function request(path, body) {
         const isFile = body instanceof FormData;
-        const response = await fetch(config.api + path, {
-            method: 'POST',
-            credentials: 'same-origin',
-            headers: { 'X-WP-Nonce': config.nonce, ...(isFile ? {} : { 'Content-Type': 'application/json' }) },
-            body: isFile ? body : JSON.stringify(body),
-        });
+        let response;
+        try {
+            response = await fetch(config.api + path, {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: { 'X-WP-Nonce': config.nonce, ...(isFile ? {} : { 'Content-Type': 'application/json' }) },
+                body: isFile ? body : JSON.stringify(body),
+            });
+        } catch {
+            if (path === 'convert' && isFile && /\.pdf$/i.test(body.get('file').name)) {
+                throw new Error('WordPress stopped responding while reading this PDF. Try exporting a smaller page range as a new PDF, or import the original document instead.');
+            }
+            throw new Error(path === 'convert'
+                ? 'Collage couldn’t reach WordPress. Try the document again. If it keeps failing in the demo, reload the demo page.'
+                : 'Collage lost contact with WordPress while saving. Check your drafts before trying again.');
+        }
         let data;
         try {
             data = await response.json();
