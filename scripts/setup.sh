@@ -2,7 +2,8 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-bash scripts/dependencies.sh
+composer dump-autoload --no-dev --optimize
+mkdir -p .local
 
 if [ ! -f .local/wordpress/wp-load.php ]; then
     curl -fL https://wordpress.org/wordpress-7.1.4.zip -o .local/wordpress.zip

@@ -3,14 +3,15 @@
 Collage uses the native PHP Pandoc port and its MarkerPDF reader from
 [adamziel/port-libs](https://github.com/adamziel/port-libs).
 
-- Revision: `0e89f7f4e19cefb961e5ee2de61145b4f0c018fc`
-- Source: `lanes/pandoc/src` and the PDF text reader files selected from
-  `lanes/markerpdf/src` in `scripts/dependencies.sh`.
+- Original revision: `0e89f7f4e19cefb961e5ee2de61145b4f0c018fc`
+- Source: `lib/pandoc/` was imported from `lanes/pandoc/src`; `lib/markerpdf/`
+  contains the PDF text reader files and resources previously shipped from
+  `lanes/markerpdf/src`.
 - Original port code: MIT, as declared in the pinned upstream `composer.json`.
   That declaration does not replace the terms of the resources listed below.
 
-The build copies the selected files unchanged. Composer generates the class
-map from those files. MarkerPDF's OCR pipeline and its Surya and Tesseract
+The source is maintained in Collage. Composer generates the class map
+from the tracked files. MarkerPDF's OCR pipeline and its Surya and Tesseract
 language tables are not distributed in the plugin. The target WordPress site
 does not need Composer or a Pandoc executable.
 
@@ -44,7 +45,7 @@ THE SOFTWARE.
 Source revision: https://github.com/jgm/pandoc/tree/0640c4c9859aa5a3ede082c190fcd5883c24ac83
 Upstream notices: https://github.com/jgm/pandoc/blob/0640c4c9859aa5a3ede082c190fcd5883c24ac83/COPYRIGHT
 
-Paths below are relative to vendor/port-libs/lanes/pandoc/src/:
+Paths below are relative to lib/pandoc/:
 
 - resources/docx-default-styles.xml adapts data/docx/word/styles.xml. The port
   reformats the XML and adds style definitions. Copyright (C) 2006-2024
@@ -61,7 +62,7 @@ Paths below are relative to vendor/port-libs/lanes/pandoc/src/:
 Adobe CMaps (https://github.com/adobe-type-tools/cmap-resources) are shipped
 unchanged from the pinned port-libs checkout. Each file retains its copyright,
 redistribution terms, and disclaimer under
-vendor/port-libs/lanes/markerpdf/src/Resources/CMap/.
+lib/markerpdf/Resources/CMap/.
 
 Composer's generated autoloader retains the MIT license and copyright notice
 in vendor/composer/LICENSE.

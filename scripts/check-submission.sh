@@ -6,10 +6,10 @@ work="$(mktemp -d "$PWD/.local/submission.XXXXXX")"
 trap 'rm -rf "$work"' EXIT
 unzip -q dist/collage.zip -d "$work"
 for path in LICENSE THIRD-PARTY.txt vendor/composer/LICENSE \
-    vendor/port-libs/lanes/markerpdf/src/Resources/CMap/UniJIS-UCS2-H; do
+    lib/markerpdf/Resources/CMap/UniJIS-UCS2-H; do
     test -s "$work/collage/$path"
 done
-if find "$work/collage/vendor/port-libs/lanes/markerpdf" -iname '*ocr*.php' | grep . ||
+if find "$work/collage/lib/markerpdf" -iname '*ocr*.php' | grep . ||
     grep -E 'MarkerPDF.*(OcrLanguage|CorePdfConverter|MarkerRuntimePlanner)' "$work/collage/vendor/composer/autoload_classmap.php"; then
     echo "The plugin ZIP must not contain the OCR pipeline." >&2
     exit 1

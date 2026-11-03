@@ -6,8 +6,8 @@
   "require": { "php": ">=8.2" },
   "autoload": {
     "classmap": [
-      "vendor/port-libs/lanes/pandoc/src/",
-      "vendor/port-libs/lanes/markerpdf/src/"
+      "lib/pandoc/",
+      "lib/markerpdf/"
     ]
   }
 }

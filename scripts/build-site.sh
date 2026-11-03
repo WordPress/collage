@@ -2,7 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-# Assembles the GitHub Pages demo in dist/site. Run scripts/dependencies.sh first.
+# Assembles the GitHub Pages demo in dist/site. Generate the Composer class map first.
 php scripts/build.php > /dev/null
 rm -rf dist/site
 cp -R site dist/site

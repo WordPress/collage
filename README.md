@@ -126,11 +126,12 @@ the plugin itself does not change the host’s resource settings.
 ## Build from source
 
 ```sh
-bash scripts/dependencies.sh
+composer dump-autoload --no-dev --optimize
 php scripts/build.php
 ```
 
-This fetches the pinned conversion source and generates its Composer class map.
+The conversion source is checked in under `lib/`. Composer generates the class map
+without fetching dependencies.
 No Node build or WordPress install is needed to make the ZIP. The DOCX example
 is checked in; `php scripts/make-sample.php` regenerates it when the example changes.
 
@@ -162,7 +163,8 @@ checks all three samples and your imported drafts, and shows any invalid blocks.
 
 ## Credits
 
-Collage uses the native PHP Pandoc port and MarkerPDF readers from
+Collage maintains its native PHP Pandoc and MarkerPDF readers in `lib/`,
+originally imported from
 [adamziel/port-libs](https://github.com/adamziel/port-libs). Conversion runs in PHP;
 the Pandoc executable is not required.
 
