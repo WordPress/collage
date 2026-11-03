@@ -61,7 +61,8 @@
 .pandoc-app .pandoc-queue-item { position: relative; margin: 0; }
 .pandoc-app .pandoc-queue-select { width: 100%; display: grid; grid-template-columns: 20px minmax(0, 1fr); column-gap: 10px; align-items: center; padding: 8px 34px 8px 10px; border: 0; border-radius: 6px; background: none; color: var(--pandoc-ink); text-align: left; line-height: 1.5; }
 .pandoc-app .pandoc-queue-select:hover { background: #f6f7f7; }
-.pandoc-app .is-selected .pandoc-queue-select { background: var(--pandoc-tint); box-shadow: inset 3px 0 0 var(--pandoc-blue); }
+.pandoc-app .is-selected .pandoc-queue-select { background: var(--pandoc-tint); }
+.pandoc-app .is-selected .pandoc-queue-name { color: var(--pandoc-blue); }
 .pandoc-app .pandoc-queue-select:focus-visible { outline-offset: -2px; }
 .pandoc-app .pandoc-queue-icon { grid-row: span 2; width: 20px; height: 20px; font-size: 20px; color: var(--pandoc-faint); }
 .pandoc-app .pandoc-queue-icon.pandoc-spinner { width: 16px; height: 16px; margin: 2px; border: 2px solid var(--pandoc-line); border-top-color: var(--pandoc-blue); border-radius: 50%; animation: pandoc-spin .8s linear infinite; }
