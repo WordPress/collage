@@ -5,6 +5,15 @@ cd "$(dirname "$0")/.."
 work="$(mktemp -d "$PWD/.local/submission.XXXXXX")"
 trap 'rm -rf "$work"' EXIT
 unzip -q dist/collage.zip -d "$work"
+for path in LICENSE THIRD-PARTY.txt vendor/composer/LICENSE \
+    vendor/port-libs/lanes/markerpdf/src/Resources/CMap/UniJIS-UCS2-H; do
+    test -s "$work/collage/$path"
+done
+if find "$work/collage/vendor/port-libs/lanes/markerpdf" -iname '*ocr*.php' | grep . ||
+    grep -E 'MarkerPDF.*(OcrLanguage|CorePdfConverter|MarkerRuntimePlanner)' "$work/collage/vendor/composer/autoload_classmap.php"; then
+    echo "The plugin ZIP must not contain the OCR pipeline." >&2
+    exit 1
+fi
 curl -fsSL https://downloads.wordpress.org/plugin/plugin-check.2.1.0.zip -o "$work/plugin-check.zip"
 unzip -oq "$work/plugin-check.zip" -d .local/wordpress/wp-content/plugins
 php .local/wp-cli.phar --allow-root plugin activate plugin-check --path=.local/wordpress

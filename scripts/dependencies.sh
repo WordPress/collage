@@ -16,8 +16,16 @@ if [ "$(git -C .local/port-libs rev-parse HEAD)" != "$ref" ]; then
     echo "The local library checkout differs from the pinned revision. Keep it unchanged and use a clean project folder." >&2
     exit 1
 fi
-for lane in pandoc markerpdf; do
-    mkdir -p "vendor/port-libs/lanes/$lane"
-    cp -R ".local/port-libs/lanes/$lane/src" "vendor/port-libs/lanes/$lane/"
-done
+mkdir -p vendor/port-libs/lanes/pandoc
+cp -R .local/port-libs/lanes/pandoc/src vendor/port-libs/lanes/pandoc/
+
+# Pandoc reads existing PDF text and images without MarkerPDF's OCR pipeline.
+# Recreate this generated tree so old installs cannot leave OCR files in the ZIP.
+source=.local/port-libs/lanes/markerpdf/src
+target=vendor/port-libs/lanes/markerpdf/src
+rm -rf "$target"
+mkdir -p "$target"
+cp "$source"/{BboxGeometry,MarkerAppPreview,PdfActionReviewExtractor,PdfAnnotationExtractor,PdfClassicXrefRebuilder,PdfDocumentFacts,PdfDocumentSecurityStoreExtractor,PdfImageRenderer,PdfMarkupAnnotationExtractor,PdfMetadataExtractor,PdfOutlineExtractor,PdfPageFacts,PdfPagePropertyExtractor,PdfTextExtractor,PdfXrefFreeObjectMap}.php "$target/"
+cp -R "$source/Resources" "$target/"
+
 composer dump-autoload --no-dev --optimize

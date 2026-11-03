@@ -166,4 +166,7 @@ Collage uses the native PHP Pandoc port and MarkerPDF readers from
 [adamziel/port-libs](https://github.com/adamziel/port-libs). Conversion runs in PHP;
 the Pandoc executable is not required.
 
-See [THIRD-PARTY.txt](THIRD-PARTY.txt) for the library revision and license.
+Collage's code, original example documents (`samples/` and `site/examples/`),
+and original artwork in `.wordpress-org/` are available under
+[GPL version 2 or later](LICENSE). See [THIRD-PARTY.txt](THIRD-PARTY.txt)
+for the bundled files' sources and terms.

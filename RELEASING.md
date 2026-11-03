@@ -13,6 +13,13 @@ runs Plugin Check on the extracted ZIP, and boots the Playground examples.
 Only the tag job publishes a release, using the ZIP from the passing build and
 its SHA-256 checksum. Use the attached `collage.zip`, not the source archive.
 
+The release tag identifies the exact source. Its README has the build
+instructions. When updating the reader revision or changing what ships, check
+each new or changed third-party file's terms against `THIRD-PARTY.txt`. Inspect
+the built ZIP for the required license texts and notices before tagging. The
+demo uses the same ZIP build and publishes the license beside its standalone
+examples.
+
 ## Submit to WordPress.org
 
 1. Download the release's `collage.zip`. It includes `collage.php`, `readme.txt`,

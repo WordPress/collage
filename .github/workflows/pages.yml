@@ -7,6 +7,10 @@ on:
     paths:
       - '.github/workflows/pages.yml'
       - 'scripts/build-site.sh'
+      - 'scripts/build.php'
+      - 'scripts/dependencies.sh'
+      - 'LICENSE'
+      - 'THIRD-PARTY.txt'
       - 'site/**'
   workflow_dispatch:
 
