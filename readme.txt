@@ -4,7 +4,7 @@ Tags: import, documents, docx, markdown, blocks
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 0.2.0
+Stable tag: 0.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -57,6 +57,10 @@ No. Upload and conversion happen in one request. If conversion stops before you 
 2. Review each converted document, then create drafts one at a time or all together.
 
 == Changelog ==
+
+= 0.2.1 =
+* Remove unused OCR code from the plugin ZIP. PDF text extraction and Adobe character maps are unchanged.
+* Update bundled third-party notices.
 
 = 0.2.0 =
 * Import several documents at once. Review each one, then create drafts one at a time or all together.
