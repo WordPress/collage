@@ -22,7 +22,7 @@ DOM, Intl, Mbstring, Zip, and Zlib. GD or Imagick helps WordPress make image siz
 
 The first Playground demo opens the dropzone with three bundled examples. The
 second imports the Word sample as a draft; open **A good place to start** to edit
-its headings, list, and table. Playground runs in your browser and the demo
+its headings and table. Playground runs in your browser and the demo
 starts with a fresh test site.
 
 ## Run locally

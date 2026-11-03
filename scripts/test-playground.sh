@@ -39,3 +39,8 @@ JS
     npx --yes --package=@wp-playground/cli@3.1.62 wp-playground-cli run-blueprint \
         --blueprint="$local_blueprint" --blueprint-may-read-adjacent-files
 done
+
+npx --yes --package=ajv-cli@5.0.0 ajv validate --strict=false \
+    -s "$work/schema.json" -d .wordpress-org/blueprints/blueprint.json
+npx --yes --package=@wp-playground/cli@3.1.62 wp-playground-cli run-blueprint \
+    --blueprint="$work/sample-draft.json" --blueprint-may-read-adjacent-files --php=8.2 --wp=6.7

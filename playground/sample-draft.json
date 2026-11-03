@@ -2,7 +2,7 @@
   "$schema": "https://playground.wordpress.net/blueprint-schema.json",
   "meta": {
     "title": "Collage: sample draft",
-    "description": "Inspect a Word document imported as a draft with editable headings, lists, and a table.",
+    "description": "Inspect a Word document imported as a draft with editable headings and a table.",
     "author": "adamziel"
   },
   "landingPage": "/wp-admin/edit.php?post_status=draft&post_type=post",

@@ -69,4 +69,5 @@ jobs:
           gh run download "$GITHUB_RUN_ID" --name collage --dir dist
           (cd dist && sha256sum -c collage.zip.sha256)
           gh release create "$GITHUB_REF_NAME" dist/collage.zip dist/collage.zip.sha256 \
-            --verify-tag --title "Collage $version" --generate-notes
+            --verify-tag --title "Collage $version" --generate-notes \
+            --notes 'Install `collage.zip` under **Plugins → Add Plugin → Upload Plugin**, then open **Tools → Collage**. See the repository README for Playground demos and import limits.'
