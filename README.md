@@ -9,9 +9,9 @@ and save it as a draft post or page.
 > **Collage is an experimental project.** Try it in Playground or on a test site
 > first. Some formatting may change during import, so review the draft before publishing.
 
-**[Download Collage](https://github.com/adamziel/collage/releases/latest/download/collage.zip)**
-· **[Try the demo](https://adamziel.github.io/collage/)**
-· **[Open a sample draft in Playground](https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2Fadamziel%2Fcollage%2Fmain%2Fplayground%2Fsample-draft.json)**
+**[Download Collage](https://github.com/WordPress/collage/releases/latest/download/collage.zip)**
+· **[Try the demo](https://wordpress.github.io/collage/)**
+· **[Open a sample draft in Playground](https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2FWordPress%2Fcollage%2Fmain%2Fplayground%2Fsample-draft.json)**
 
 ![Collage reviewing three imported documents](.wordpress-org/screenshot-2.png)
 

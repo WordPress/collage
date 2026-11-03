@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Collage
- * Plugin URI: https://github.com/adamziel/collage
+ * Plugin URI: https://github.com/WordPress/collage
  * Description: Turn Word documents, PDFs, Markdown, and more into editable WordPress drafts.
  * Version: 0.2.1
  * Requires at least: 6.7
