@@ -6,7 +6,7 @@ Turn documents into editable WordPress blocks. Drop in a file, check the preview
 and save it as a draft post or page.
 
 **[Download Collage](https://github.com/adamziel/collage/releases/latest/download/collage.zip)**
-· **[Try the importer in Playground](https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2Fadamziel%2Fcollage%2Fmain%2Fplayground%2Fblueprint.json)**
+· **[Try the demo](https://adamziel.github.io/collage/)**
 · **[Open a sample draft in Playground](https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2Fadamziel%2Fcollage%2Fmain%2Fplayground%2Fsample-draft.json)**
 
 ![Collage reviewing three imported documents](.wordpress-org/screenshot-2.png)
@@ -22,10 +22,10 @@ Requires WordPress 6.7+ and PHP 8.2+. Use the release ZIP rather than GitHub's
 source archive: the release includes the conversion libraries. The readers use
 DOM, Intl, Mbstring, Zip, and Zlib. GD or Imagick helps WordPress make image sizes.
 
-The first Playground demo opens the dropzone with three bundled examples. The
-second imports the Word sample as a draft; open **A good place to start** to edit
-its headings and table. Playground runs in your browser and the demo
-starts with a fresh test site.
+The demo runs WordPress in your browser with Collage open and six example
+documents beside it: Word, Markdown, HTML, OpenDocument, EPUB, and PowerPoint.
+The sample draft link imports the Word sample as a draft; open **A good place to
+start** to edit its headings and table. Both start with a fresh test site.
 
 ## Run locally
 
@@ -129,6 +129,10 @@ php scripts/build.php
 This fetches the pinned conversion source and generates its Composer class map.
 No Node build or WordPress install is needed to make the ZIP. The DOCX example
 is checked in; `php scripts/make-sample.php` regenerates it when the example changes.
+
+`bash scripts/build-site.sh` assembles the demo page in `dist/site`. Serve that
+folder, for example with `python3 -m http.server --directory dist/site`, to try it.
+The `Publish the demo` workflow deploys it to GitHub Pages from `main`.
 
 ## Check a build
 

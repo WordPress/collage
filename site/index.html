@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Collage demo</title>
+    <meta name="description" content="Import Word, Markdown, HTML, EPUB, and other documents as editable WordPress blocks, in a WordPress that runs in your browser.">
+    <link rel="icon" href="icon.svg">
+    <link rel="stylesheet" href="demo.css">
+    <script type="module" src="demo.js"></script>
+</head>
+<body>
+    <header class="bar">
+        <a class="brand" href="https://github.com/adamziel/collage"><img src="icon.svg" alt="" width="28" height="28">Collage</a>
+        <p class="tagline">Turn documents into editable WordPress blocks.</p>
+        <nav>
+            <a href="https://github.com/adamziel/collage">GitHub</a>
+            <a class="button" href="https://github.com/adamziel/collage/releases/latest/download/collage.zip">Download the plugin</a>
+        </nav>
+    </header>
+    <main class="demo">
+        <aside class="examples" aria-labelledby="examples-heading">
+            <h2 id="examples-heading">Try an example</h2>
+            <p id="status" class="status" role="status">WordPress is starting…</p>
+            <ul>
+                <li><button type="button" class="example" data-file="examples/a-good-place-to-start.docx" disabled><span class="sheet"><b>DOCX</b></span><span class="name">A good place to start</span><span class="kind">Word document</span></button></li>
+                <li><button type="button" class="example" data-file="examples/field-notes.md" disabled><span class="sheet"><b>MD</b></span><span class="name">Field notes</span><span class="kind">Markdown</span></button></li>
+                <li><button type="button" class="example" data-file="examples/the-weekly-edit.html" disabled><span class="sheet"><b>HTML</b></span><span class="name">The weekly edit</span><span class="kind">Web page</span></button></li>
+                <li><button type="button" class="example" data-file="examples/weeknight-lentil-soup.odt" disabled><span class="sheet"><b>ODT</b></span><span class="name">Weeknight lentil soup</span><span class="kind">OpenDocument text</span></button></li>
+                <li><button type="button" class="example" data-file="examples/the-lighthouse-keepers-notebook.epub" disabled><span class="sheet"><b>EPUB</b></span><span class="name">The lighthouse keeper’s notebook</span><span class="kind">EPUB book</span></button></li>
+                <li><button type="button" class="example" data-file="examples/quarterly-kickoff.pptx" disabled><span class="sheet"><b>PPTX</b></span><span class="name">Quarterly kickoff</span><span class="kind">PowerPoint slides</span></button></li>
+            </ul>
+            <p class="note">You can also drop your own files into WordPress. It runs in your browser, so your documents stay on your device.</p>
+            <p id="announcer" class="screen-reader-text" role="status"></p>
+        </aside>
+        <iframe id="playground" title="WordPress Playground running Collage"></iframe>
+    </main>
+</body>
+</html>
