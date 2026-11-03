@@ -1,0 +1,29 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "meta": {
+    "title": "Collage",
+    "description": "Import a document into editable WordPress blocks.",
+    "author": "adamziel"
+  },
+  "landingPage": "/wp-admin/tools.php?page=pandoc-importer",
+  "preferredVersions": {
+    "php": "8.4",
+    "wp": "7.1"
+  },
+  "features": {
+    "intl": true
+  },
+  "login": true,
+  "steps": [
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "url",
+        "url": "https://github.com/adamziel/collage/releases/latest/download/collage.zip"
+      },
+      "options": {
+        "activate": true
+      }
+    }
+  ]
+}

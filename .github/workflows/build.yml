@@ -1,0 +1,72 @@
+name: Build and test Collage
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        with:
+          php-version: '8.2'
+          extensions: curl, dom, gd, intl, mbstring, pdo_sqlite, zip
+          tools: composer
+          coverage: none
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24.21.0'
+      - name: Test on WordPress
+        run: |
+          bash scripts/setup.sh
+          php .local/wp-cli.phar eval-file tests/integration.php --path=.local/wordpress
+          node --check assets/admin.js
+          bash scripts/serve.sh > .local/server.log 2>&1 &
+          trap 'kill $!' EXIT
+          curl --fail --silent --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:8890/wp-login.php > /dev/null
+          php tests/http.php
+      - name: Build installable ZIP
+        run: php scripts/build.php
+      - name: Check submission ZIP
+        run: bash scripts/check-submission.sh
+      - name: Boot Playground examples
+        run: bash scripts/test-playground.sh
+      - name: Record checksum
+        run: cd dist && sha256sum collage.zip > collage.zip.sha256
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: collage
+          path: |
+            dist/collage.zip
+            dist/collage.zip.sha256
+          if-no-files-found: error
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Publish the tested ZIP
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(sed -n 's/^ \* Version: //p' collage.php)
+          stable=$(sed -n 's/^Stable tag: //p' readme.txt)
+          test "$GITHUB_REF_NAME" = "v$version"
+          test "$stable" = "$version"
+          gh run download "$GITHUB_RUN_ID" --name collage --dir dist
+          (cd dist && sha256sum -c collage.zip.sha256)
+          gh release create "$GITHUB_REF_NAME" dist/collage.zip dist/collage.zip.sha256 \
+            --verify-tag --title "Collage $version" --generate-notes

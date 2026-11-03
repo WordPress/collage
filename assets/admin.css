@@ -1,0 +1,69 @@
+.pandoc-app { --pandoc-blue: var(--wp-admin-theme-color, #2271b1); max-width: 1120px; margin: 0 28px 0 8px; color: #1e1e1e; font-size: 13px; }
+.pandoc-app *, .pandoc-app *::before, .pandoc-app *::after { box-sizing: border-box; }
+.pandoc-app [hidden] { display: none !important; }
+.pandoc-app button, .pandoc-app input, .pandoc-app select { font-family: inherit; }
+.pandoc-app button { cursor: pointer; }
+.pandoc-app a, .pandoc-app .pandoc-text-button { color: var(--pandoc-blue); }
+.pandoc-app button:focus-visible, .pandoc-app a:focus-visible, .pandoc-app pre:focus-visible { outline: 2px solid var(--pandoc-blue); outline-offset: 3px; }
+.pandoc-app .pandoc-text-button { background: none; border: 0; padding: 4px 0; font-size: 13px; line-height: 1.6; text-decoration: underline; text-underline-offset: 2px; }
+.pandoc-app h1 { padding: 0; margin: 0; font-size: 23px; line-height: 1.4; font-weight: 400; }
+.pandoc-app .pandoc-page-heading { padding: 28px 0 24px; }
+.pandoc-app .pandoc-page-heading p { color: #646970; margin: 8px 0 0; line-height: 1.7; }
+.pandoc-app #pandoc-start { max-width: 760px; }
+.pandoc-app .pandoc-dropzone { min-height: 260px; padding: 30px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px dashed #a7aaad; background: #fff; text-align: center; transition: border-color .15s, background .15s; }
+.pandoc-app .pandoc-dropzone.is-dragover { border-color: var(--pandoc-blue); background: #f0f6fc; }
+.pandoc-app .pandoc-dropzone > .dashicons { width: 32px; height: 32px; font-size: 32px; color: #8c8f94; }
+.pandoc-app .pandoc-dropzone h2 { margin: 14px 0 18px; font-size: 17px; line-height: 1.5; font-weight: 400; }
+.pandoc-app .pandoc-choose { min-height: 36px; padding: 0 18px; font-size: 13px; }
+.pandoc-app .pandoc-upload-limit { font-size: 12px; margin-top: 12px; color: #646970; }
+.pandoc-app .pandoc-formats { margin: 14px 0 8px; text-align: center; font-size: 12px; line-height: 1.9; color: #646970; }
+.pandoc-app .pandoc-format-note { margin: 0 0 16px; text-align: center; font-size: 11px; line-height: 1.7; color: #646970; }
+.pandoc-app .pandoc-import-note { margin: 9px 0 3px; text-align: center; color: #646970; font-size: 12px; }
+.pandoc-app .pandoc-sample-link { text-align: center; margin: 8px 0 0; }
+.pandoc-app .pandoc-secondary-actions { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #dcdcde; margin-top: 28px; padding: 14px 0; }
+.pandoc-app .pandoc-secondary-actions .pandoc-text-button { color: #50575e; font-size: 12px; }
+.pandoc-app #pandoc-recent-count { margin-left: 3px; }
+.pandoc-app .pandoc-loading { max-width: 760px; min-height: 380px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.pandoc-app .pandoc-loading .spinner { float: none; margin: 0 0 20px; }
+.pandoc-app .pandoc-loading h1 { font-size: 20px; }
+.pandoc-app .pandoc-loading p, .pandoc-app .pandoc-muted { color: #646970; }
+.pandoc-app .pandoc-error { margin: 20px 0; max-width: 760px; }
+.pandoc-app .pandoc-back { margin-top: 24px; }
+.pandoc-app .pandoc-back + .pandoc-page-heading { padding-top: 16px; }
+.pandoc-app .pandoc-review-layout { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 24px; align-items: start; padding-bottom: 24px; }
+.pandoc-app .pandoc-preview-card { border: 1px solid #dcdcde; background: #fff; overflow: hidden; }
+.pandoc-app .pandoc-preview-toolbar { display: flex; padding: 0 18px; gap: 24px; border-bottom: 1px solid #dcdcde; }
+.pandoc-app .pandoc-preview-toolbar button { border: 0; border-bottom: 2px solid transparent; background: none; padding: 14px 0 12px; color: #646970; font-size: 12px; }
+.pandoc-app .pandoc-preview-toolbar button.is-active { color: var(--pandoc-blue); border-color: var(--pandoc-blue); }
+.pandoc-app #pandoc-preview { display: block; width: 100%; min-height: 570px; border: 0; background: #fff; }
+.pandoc-app #pandoc-code-panel { padding: 20px; }
+.pandoc-app #pandoc-code { white-space: pre-wrap; word-break: break-word; line-height: 1.8; font-size: 11px; height: 480px; overflow: auto; margin-top: 0; }
+.pandoc-app .pandoc-draft-settings { background: #fff; border: 1px solid #dcdcde; padding: 20px; }
+.pandoc-app .pandoc-draft-settings h2 { margin: 0; font-size: 14px; font-weight: 600; }
+.pandoc-app .pandoc-draft-settings label { display: block; font-size: 12px; font-weight: 500; margin: 18px 0 7px; }
+.pandoc-app .pandoc-draft-settings input, .pandoc-app .pandoc-draft-settings select { width: 100%; min-height: 36px; font-size: 12px; max-width: 100%; }
+.pandoc-app .pandoc-settings-note { line-height: 1.7; font-size: 12px; color: #646970; margin: 20px 0; }
+.pandoc-app .pandoc-create { width: 100%; min-height: 36px; }
+.pandoc-app .pandoc-not-published { color: #646970; font-size: 11px; text-align: center; line-height: 1.7; margin: 10px 0 0; }
+.pandoc-app .pandoc-warnings { color: #6e5220; font-size: 12px; }
+.pandoc-app .pandoc-warnings p { border-left: 2px solid #dba617; padding-left: 10px; font-size: inherit; line-height: 1.7; margin: 17px 0 0; }
+.pandoc-app .pandoc-success { max-width: 760px; min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+.pandoc-app .pandoc-success-icon { color: #4d755a; font-size: 28px; width: 28px; height: 28px; }
+.pandoc-app #pandoc-success-title { margin: 0; color: #646970; }
+.pandoc-app .pandoc-success .button { padding: 3px 16px; }
+.pandoc-app .pandoc-empty { padding: 40px 0; }
+.pandoc-app .pandoc-empty p { color: #646970; margin: 0 0 20px; }
+.pandoc-app .pandoc-recent-table { overflow-x: auto; padding-bottom: 24px; }
+.pandoc-app .pandoc-recent-table th:first-child, .pandoc-app .pandoc-recent-table th:nth-child(2) { width: 29%; }
+.pandoc-app .pandoc-recent-table td { padding-top: 14px; padding-bottom: 14px; overflow-wrap: anywhere; }
+.pandoc-app .pandoc-recent-table a { font-weight: 600; }
+.pandoc-app .pandoc-help-dialog { border: 1px solid #c3c4c7; padding: 26px; width: 540px; max-width: calc(100% - 36px); box-shadow: 0 8px 60px #0003; color: #1e1e1e; }
+.pandoc-app .pandoc-help-dialog::backdrop { background: #0006; }
+.pandoc-app .pandoc-dialog-heading { display: flex; justify-content: space-between; gap: 15px; align-items: center; }
+.pandoc-app .pandoc-dialog-heading h2 { font-size: 18px; font-weight: 500; margin: 0; }
+.pandoc-app .pandoc-help-dialog ol { padding-left: 20px; line-height: 1.8; margin-top: 24px; }
+.pandoc-app .pandoc-help-dialog li { margin-bottom: 14px; padding-left: 5px; }
+.pandoc-app .pandoc-help-dialog p { line-height: 1.8; font-size: 12px; }
+.pandoc-app .pandoc-help-samples button { font-size: 12px; }
+@media (max-width: 700px) { .pandoc-app { margin: 0 10px 0 0; } .pandoc-app .pandoc-page-heading { padding-top: 24px; } .pandoc-app .pandoc-dropzone { min-height: 250px; } .pandoc-app .pandoc-review-layout { grid-template-columns: 1fr; gap: 20px; } .pandoc-app #pandoc-preview { min-height: 450px; } .pandoc-app .pandoc-recent-table table { min-width: 650px; } }
+@media (prefers-reduced-motion: reduce) { .pandoc-app * { transition: none !important; } }

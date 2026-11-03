@@ -1,0 +1,33 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "meta": {
+    "title": "Collage: sample draft",
+    "description": "Inspect a Word document imported as a draft with editable headings, lists, and a table.",
+    "author": "adamziel"
+  },
+  "landingPage": "/wp-admin/edit.php?post_status=draft&post_type=post",
+  "preferredVersions": {
+    "php": "8.4",
+    "wp": "7.1"
+  },
+  "features": {
+    "intl": true
+  },
+  "login": true,
+  "steps": [
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "url",
+        "url": "https://github.com/adamziel/collage/releases/latest/download/collage.zip"
+      },
+      "options": {
+        "activate": true
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php\nrequire '/wordpress/wp-load.php';\nwp_set_current_user(1);\n$preview = new WP_REST_Request('POST');\n$preview->set_param('sample', 'docx');\n$result = PandocImporter\\Plugin::convert($preview);\nif (is_wp_error($result)) {\n    throw new RuntimeException($result->get_error_message());\n}\n$draft = new WP_REST_Request('POST');\n$draft->set_param('token', $result['token']);\n$draft->set_param('title', 'A good place to start');\n$result = PandocImporter\\Plugin::draft($draft);\nif (is_wp_error($result) || get_post_status($result['id']) !== 'draft') {\n    throw new RuntimeException('The sample draft could not be created.');\n}\n"
+    }
+  ]
+}

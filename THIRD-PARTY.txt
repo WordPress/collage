@@ -1,0 +1,40 @@
+# Bundled conversion library
+
+Collage uses the native PHP Pandoc port and its MarkerPDF reader from
+[adamziel/port-libs](https://github.com/adamziel/port-libs).
+
+- Revision: `0e89f7f4e19cefb961e5ee2de61145b4f0c018fc`
+- Source: `lanes/pandoc/src` and `lanes/markerpdf/src`
+- License: MIT, as declared in the upstream `composer.json`
+
+The setup script copies those source directories unchanged. Composer generates
+the class map. The plugin ZIP includes both readers and the class map; the target
+WordPress site does not need Composer or a Pandoc executable.
+
+The local test site uses WordPress and the WordPress Performance Team’s SQLite
+Database Integration plugin. Neither is bundled in the plugin ZIP.
+
+The upstream package declares MIT in composer.json at the revision above.
+Copyright: the port-libs contributors, as recorded in the upstream history.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+The bundled Adobe CMap files retain their copyright and redistribution terms
+in each file under vendor/port-libs/lanes/markerpdf/src/Resources/CMap/.
+Composer's generated autoloader includes its license in vendor/composer/LICENSE.

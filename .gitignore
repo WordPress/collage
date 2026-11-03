@@ -1,0 +1,4 @@
+.local/
+dist/
+vendor/
+.DS_Store
