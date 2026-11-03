@@ -13,7 +13,7 @@ and save it as a draft post or page.
 
 1. Download `collage.zip`. In WordPress, go to **Plugins → Add Plugin → Upload Plugin**.
 2. Install and activate Collage, then open **Tools → Collage**.
-3. Drop a document or choose **Try a sample document**.
+3. Drop one or more documents, or choose **try a sample**.
 4. Review the blocks, create a draft, and open it in the editor.
 
 Requires WordPress 6.7+ and PHP 8.2+. Use the release ZIP rather than GitHub's
@@ -44,7 +44,9 @@ The plugin is linked into the test site, so reloading the page picks up edits.
 
 ## What works
 
-- A keyboard-accessible file picker and drag-and-drop, with file type and size checks.
+- A keyboard-accessible file picker and drag-and-drop anywhere on the screen, with file type and size checks.
+- Several documents at once. They convert one at a time; each gets its own preview and draft,
+  or all ready documents can be saved as drafts together.
 - Word, PDF, Markdown, HTML, EPUB, OpenDocument, RTF, text, PowerPoint, Excel, and CSV.
 - One sample link, with two more sample documents in Help.
 - Sandboxed document preview and a block-markup view with a copy button.

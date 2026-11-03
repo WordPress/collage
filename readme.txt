@@ -24,7 +24,7 @@ Collage reads documents on your WordPress server. It does not send them to a con
 
 1. Install and activate Collage.
 2. Go to Tools → Collage.
-3. Drop in a document or choose Try a sample document.
+3. Drop in one or more documents, or choose try a sample.
 4. Review the preview, then create a draft.
 
 == Frequently Asked Questions ==
