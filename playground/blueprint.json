@@ -19,7 +19,7 @@
       "step": "installPlugin",
       "pluginData": {
         "resource": "url",
-        "url": "https://github.com/adamziel/collage/releases/latest/download/collage.zip"
+        "url": "https://github.com/WordPress/collage/releases/latest/download/collage.zip"
       },
       "options": {
         "activate": true

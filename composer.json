@@ -1,5 +1,5 @@
 {
-  "name": "adamziel/collage",
+  "name": "wordpress/collage",
   "description": "Turn documents into editable WordPress drafts.",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",

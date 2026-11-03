@@ -20,7 +20,7 @@ Supported extensions: .csv, .docx, .epub, .htm, .html, .markdown, .md, .odt, .pd
 
 Collage reads documents on your WordPress server. It does not send them to a conversion service. The plugin bundles the native PHP readers and runs without Composer or a Pandoc executable.
 
-[Source code and build instructions](https://github.com/adamziel/collage) · [Try the demo](https://adamziel.github.io/collage/)
+[Source code and build instructions](https://github.com/WordPress/collage) · [Try the demo](https://wordpress.github.io/collage/)
 
 == Installation ==
 
