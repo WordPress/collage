@@ -1,3 +1,5 @@
+<img src=".wordpress-org/icon.svg" alt="" width="96" align="right">
+
 # Collage
 
 Turn documents into editable WordPress blocks. Drop in a file, check the preview,
@@ -7,7 +9,7 @@ and save it as a draft post or page.
 · **[Try the importer in Playground](https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2Fadamziel%2Fcollage%2Fmain%2Fplayground%2Fblueprint.json)**
 · **[Open a sample draft in Playground](https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2Fadamziel%2Fcollage%2Fmain%2Fplayground%2Fsample-draft.json)**
 
-![Collage showing the preview of an imported Word document](.wordpress-org/screenshot-2.png)
+![Collage reviewing three imported documents](.wordpress-org/screenshot-2.png)
 
 ## Install and import
 

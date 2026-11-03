@@ -23,7 +23,7 @@ its SHA-256 checksum. Use the attached `collage.zip`, not the source archive.
 3. After approval, extract the ZIP and copy the contents of its `collage/`
    folder into the SVN checkout's `trunk/`. Tag the same files as `tags/0.1.0/`.
    Keep the directory readme's stable tag in sync with the release.
-4. Copy the icons, numbered screenshots, and `blueprints/` directory from
+4. Copy the icons, banners, numbered screenshots, and `blueprints/` directory from
    `.wordpress-org/` into the SVN checkout's top-level `assets/` directory.
    Use **Test Preview** in the listing's Advanced view before making Preview
    public. The directory preview installs the directory build; it does not use
