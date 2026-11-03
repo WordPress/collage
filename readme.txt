@@ -51,8 +51,8 @@ No. Upload and conversion happen in one request. If conversion stops before you 
 
 == Screenshots ==
 
-1. Drop in a document or try a built-in sample.
-2. Review the converted blocks before creating a draft.
+1. Drop in one or more documents, or try a built-in sample.
+2. Review each converted document, then create drafts one at a time or all together.
 
 == Changelog ==
 
