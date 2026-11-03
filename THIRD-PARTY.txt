@@ -4,17 +4,21 @@ Collage uses the native PHP Pandoc port and its MarkerPDF reader from
 [adamziel/port-libs](https://github.com/adamziel/port-libs).
 
 - Revision: `0e89f7f4e19cefb961e5ee2de61145b4f0c018fc`
-- Source: `lanes/pandoc/src` and `lanes/markerpdf/src`
-- License: MIT, as declared in the upstream `composer.json`
+- Source: `lanes/pandoc/src` and the PDF text reader files selected from
+  `lanes/markerpdf/src` in `scripts/dependencies.sh`.
+- Original port code: MIT, as declared in the pinned upstream `composer.json`.
+  That declaration does not replace the terms of the resources listed below.
 
-The setup script copies those source directories unchanged. Composer generates
-the class map. The plugin ZIP includes both readers and the class map; the target
-WordPress site does not need Composer or a Pandoc executable.
+The build copies the selected files unchanged. Composer generates the class
+map from those files. MarkerPDF's OCR pipeline and its Surya and Tesseract
+language tables are not distributed in the plugin. The target WordPress site
+does not need Composer or a Pandoc executable.
 
 The local test site uses WordPress and the WordPress Performance Team’s SQLite
 Database Integration plugin. Neither is bundled in the plugin ZIP.
 
-The upstream package declares MIT in composer.json at the revision above.
+The pinned port-libs revision declares MIT in composer.json but does not
+include a standalone MIT notice for these lanes.
 Copyright: the port-libs contributors, as recorded in the upstream history.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -35,6 +39,29 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-The bundled Adobe CMap files retain their copyright and redistribution terms
-in each file under vendor/port-libs/lanes/markerpdf/src/Resources/CMap/.
-Composer's generated autoloader includes its license in vendor/composer/LICENSE.
+## Pandoc resources
+
+Source revision: https://github.com/jgm/pandoc/tree/0640c4c9859aa5a3ede082c190fcd5883c24ac83
+Upstream notices: https://github.com/jgm/pandoc/blob/0640c4c9859aa5a3ede082c190fcd5883c24ac83/COPYRIGHT
+
+Paths below are relative to vendor/port-libs/lanes/pandoc/src/:
+
+- resources/docx-default-styles.xml adapts data/docx/word/styles.xml. The port
+  reformats the XML and adds style definitions. Copyright (C) 2006-2024
+  John MacFarlane. GPL version 2 or later; see LICENSE.
+- DocTemplate.php embeds Pandoc templates and partials from data/templates as
+  PHP strings, with adaptations for the PHP renderer. Copyright (c) 2014--2024,
+  John MacFarlane. Upstream offers GPL version 2 or later or BSD-3-Clause;
+  Collage distributes the adapted templates under GPL version 2 or later.
+  See LICENSE. Pandoc separately credits Paul Rouget for the dzslides CSS and
+  JavaScript under WTFPL (https://github.com/paulrouget/dzslides).
+
+## Adobe CMaps and Composer
+
+Adobe CMaps (https://github.com/adobe-type-tools/cmap-resources) are shipped
+unchanged from the pinned port-libs checkout. Each file retains its copyright,
+redistribution terms, and disclaimer under
+vendor/port-libs/lanes/markerpdf/src/Resources/CMap/.
+
+Composer's generated autoloader retains the MIT license and copyright notice
+in vendor/composer/LICENSE.

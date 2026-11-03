@@ -38,10 +38,11 @@ try {
     $fixtures['oversized.md'] = str_repeat( 'x', 8 * 1024 * 1024 + 1 );
     $fixtures['plain.txt'] = '<script>This must stay plain text.</script>';
     $fixtures['minimal.pdf'] = make_pdf();
+    $fixtures['cmap.pdf'] = make_pdf( true );
     foreach ( $fixtures as $name => $contents ) {
         file_put_contents( $root . '/.local/' . $name, $contents );
     }
-    foreach ( [ 'images.html', 'unsafe.html', 'remote-image.html', 'plain.txt', 'minimal.pdf' ] as $name ) {
+    foreach ( [ 'images.html', 'unsafe.html', 'remote-image.html', 'plain.txt', 'minimal.pdf', 'cmap.pdf' ] as $name ) {
         [ $status, $body ] = http( '/?rest_route=/pandoc-importer/v1/convert', [ 'file' => new CURLFile( $root . '/.local/' . $name ) ], $auth );
         $result = json_decode( $body, true );
         verify( 200 === $status, "$name converts over HTTP: " . ( $result['message'] ?? '' ) );
@@ -74,6 +75,16 @@ try {
         }
         if ( 'minimal.pdf' === $name ) {
             verify( str_contains( $result['html'], 'A local PDF import' ) && count( $result['warnings'] ) > 0, 'PDF text imports with a review warning' );
+            [ $status, $body ] = http( '/?rest_route=/pandoc-importer/v1/draft', [ 'token' => $result['token'], 'title' => 'HTTP PDF test', 'type' => 'post' ], $auth );
+            $draft = json_decode( $body, true );
+            verify( 200 === $status && isset( $draft['id'] ), 'The PDF preview saves as a draft' );
+            $created[] = 'posts/' . $draft['id'];
+            [ , $body ] = http( '/?rest_route=/wp/v2/posts/' . $draft['id'] . '&context=edit', null, $auth );
+            $post = json_decode( $body, true );
+            verify( 'draft' === $post['status'] && str_contains( $post['content']['raw'], 'A local PDF import' ), 'The saved draft contains the PDF text' );
+        }
+        if ( 'cmap.pdf' === $name ) {
+            verify( str_contains( $result['html'], '日本語' ), 'Japanese text imports from a PDF with a predefined Adobe encoding' );
         }
     }
     foreach ( [ 'invalid.docx' => 422, 'invalid.pdf' => 422, 'empty.md' => 400, 'unsupported.exe' => 415, 'oversized.md' => 413 ] as $name => $expected ) {
@@ -122,8 +133,8 @@ function verify( bool $condition, string $label ): void {
     echo "OK: $label\n";
 }
 
-function make_pdf(): string {
-    $stream = 'BT /F1 18 Tf 72 720 Td (A local PDF import) Tj ET';
+function make_pdf( bool $use_cmap = false ): string {
+    $stream = $use_cmap ? 'BT /F1 18 Tf 72 720 Td <65E5672C8A9E> Tj ET' : 'BT /F1 18 Tf 72 720 Td (A local PDF import) Tj ET';
     $objects = [
         '<< /Type /Catalog /Pages 2 0 R >>',
         '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
@@ -131,6 +142,12 @@ function make_pdf(): string {
         '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>',
         '<< /Length ' . strlen( $stream ) . ">>\nstream\n" . $stream . "\nendstream",
     ];
+    if ( $use_cmap ) {
+        // No ToUnicode stream: the reader has to look up the predefined encoding.
+        $objects[3] = '<< /Type /Font /Subtype /Type0 /BaseFont /HeiseiMin-W3 /Encoding /UniJIS-UCS2-H /DescendantFonts [6 0 R] >>';
+        $objects[] = '<< /Type /Font /Subtype /CIDFontType0 /BaseFont /HeiseiMin-W3 /CIDSystemInfo << /Registry (Adobe) /Ordering (Japan1) /Supplement 2 >> /DW 1000 >>';
+    }
+    $size = count( $objects ) + 1;
     $pdf = "%PDF-1.4\n";
     $offsets = [];
     foreach ( $objects as $index => $object ) {
@@ -138,9 +155,9 @@ function make_pdf(): string {
         $pdf .= ( $index + 1 ) . " 0 obj\n$object\nendobj\n";
     }
     $xref = strlen( $pdf );
-    $pdf .= "xref\n0 6\n0000000000 65535 f \n";
+    $pdf .= "xref\n0 $size\n0000000000 65535 f \n";
     foreach ( $offsets as $offset ) {
         $pdf .= sprintf( "%010d 00000 n \n", $offset );
     }
-    return $pdf . "trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n$xref\n%%EOF\n";
+    return $pdf . "trailer\n<< /Size $size /Root 1 0 R >>\nstartxref\n$xref\n%%EOF\n";
 }

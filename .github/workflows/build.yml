@@ -24,17 +24,21 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '24.21.0'
-      - name: Test on WordPress
+      - name: Set up WordPress and test the source checkout
         run: |
           bash scripts/setup.sh
           php .local/wp-cli.phar eval-file tests/integration.php --path=.local/wordpress
           node --check assets/admin.js
+      - name: Build installable ZIP
+        run: php scripts/build.php
+      - name: Test document uploads with the installed ZIP
+        run: |
+          unlink .local/wordpress/wp-content/plugins/collage
+          unzip -q dist/collage.zip -d .local/wordpress/wp-content/plugins
           bash scripts/serve.sh > .local/server.log 2>&1 &
           trap 'kill $!' EXIT
           curl --fail --silent --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:8890/wp-login.php > /dev/null
           php tests/http.php
-      - name: Build installable ZIP
-        run: php scripts/build.php
       - name: Check submission ZIP
         run: bash scripts/check-submission.sh
       - name: Boot Playground examples
@@ -70,4 +74,4 @@ jobs:
           (cd dist && sha256sum -c collage.zip.sha256)
           gh release create "$GITHUB_REF_NAME" dist/collage.zip dist/collage.zip.sha256 \
             --verify-tag --title "Collage $version" --generate-notes \
-            --notes 'Install `collage.zip` under **Plugins → Add Plugin → Upload Plugin**, then open **Tools → Collage**. See the repository README for Playground demos and import limits.'
+            --notes "$(printf '%s\n\n%s' 'Install `collage.zip` under **Plugins → Add Plugin → Upload Plugin**, then open **Tools → Collage**.' "[Source and build instructions](https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_REF_NAME#build-from-source)")"
