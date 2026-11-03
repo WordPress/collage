@@ -4,7 +4,7 @@ Tags: import, documents, docx, markdown, blocks
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -18,7 +18,7 @@ Supported extensions: .csv, .docx, .epub, .htm, .html, .markdown, .md, .odt, .pd
 
 Collage reads documents on your WordPress server. It does not send them to a conversion service. The plugin bundles the native PHP readers and runs without Composer or a Pandoc executable.
 
-[Source code and build instructions](https://github.com/adamziel/collage) · [Try in WordPress Playground](https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2Fadamziel%2Fcollage%2Fmain%2Fplayground%2Fblueprint.json)
+[Source code and build instructions](https://github.com/adamziel/collage) · [Try the demo](https://adamziel.github.io/collage/)
 
 == Installation ==
 
@@ -55,6 +55,12 @@ No. Upload and conversion happen in one request. If conversion stops before you 
 2. Review each converted document, then create drafts one at a time or all together.
 
 == Changelog ==
+
+= 0.2.0 =
+* Import several documents at once. Review each one, then create drafts one at a time or all together.
+* Redesigned upload screen. Drop files anywhere on the page; file type and size problems appear only when a file has one.
+* Fix: an error while creating a draft was not shown.
+* New plugin icon and directory banners.
 
 = 0.1.0 =
 * First release. Preview documents as WordPress blocks and import them into post or page drafts.
