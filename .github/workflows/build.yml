@@ -29,6 +29,8 @@ jobs:
           bash scripts/setup.sh
           php .local/wp-cli.phar eval-file tests/integration.php --path=.local/wordpress
           node --check assets/admin.js
+      - name: Run bundled reader tests
+        run: php tests/readers/run.php
       - name: Build installable ZIP
         run: php scripts/build.php
       - name: Test document uploads with the installed ZIP

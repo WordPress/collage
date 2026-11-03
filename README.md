@@ -141,6 +141,15 @@ The `Publish the demo` workflow deploys it to GitHub Pages from `main`.
 
 ## Check a build
 
+Run the standalone reader tests after generating the Composer class map:
+
+```sh
+php tests/readers/run.php
+```
+
+These tests run in CI without WordPress or external converters. See
+[`tests/readers/README.md`](tests/readers/README.md) for their scope.
+
 ```sh
 php .local/wp-cli.phar eval-file tests/integration.php --path=.local/wordpress
 php tests/http.php                 # requires the local server
