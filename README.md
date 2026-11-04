@@ -137,7 +137,8 @@ is checked in; `php scripts/make-sample.php` regenerates it when the example cha
 
 `bash scripts/build-site.sh` assembles the demo page in `dist/site`. Serve that
 folder, for example with `python3 -m http.server --directory dist/site`, to try it.
-The `Publish the demo` workflow deploys it to GitHub Pages from `main`.
+The `Publish the demo` workflow deploys the site from `main` with the latest
+published release ZIP and redeploys after each successful release.
 
 ## Check a build
 

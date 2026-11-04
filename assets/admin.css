@@ -107,7 +107,9 @@
 .pandoc-app .pandoc-warnings { color: #6e5220; font-size: 12px; }
 .pandoc-app .pandoc-warnings p { border-left: 2px solid #dba617; padding-left: 10px; font-size: inherit; line-height: 1.7; margin: 17px 0 0; }
 
-.pandoc-app .pandoc-success { max-width: 760px; min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; }
+.pandoc-app[data-step="success"] { max-width: none; margin-inline: 0 20px; }
+.pandoc-app .pandoc-success { max-width: 760px; min-height: 400px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; }
+@media (max-width: 782px) { .pandoc-app[data-step="success"] { margin-inline-end: 10px; } }
 .pandoc-app #pandoc-success-title, .pandoc-app #pandoc-success-note { margin: 0; color: var(--pandoc-muted); }
 .pandoc-app .pandoc-success .button { padding: 3px 16px; }
 .pandoc-app .pandoc-success-list { width: 100%; max-width: 520px; margin: 0; border: 1px solid var(--pandoc-line); border-radius: var(--pandoc-radius); background: #fff; text-align: left; }
