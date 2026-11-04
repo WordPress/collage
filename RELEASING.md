@@ -1,17 +1,19 @@
 # Release Collage
 
 The plugin header in `collage.php` and the `Stable tag` in `readme.txt` must match.
-Update both and add the changelog entry before tagging. For version 0.2.2:
+Update both and add the changelog entry before tagging. For version 0.2.3:
 
 ```sh
-git tag -a v0.2.2 -m "Collage 0.2.2"
-git push origin v0.2.2
+git tag -a v0.2.3 -m "Collage 0.2.3"
+git push origin v0.2.3
 ```
 
 GitHub Actions runs the WordPress integration and upload tests, builds the ZIP,
 runs Plugin Check on the extracted ZIP, and boots the Playground examples.
 Only the tag job publishes a release, using the ZIP from the passing build and
 its SHA-256 checksum. Use the attached `collage.zip`, not the source archive.
+After publishing, the release job starts the demo deployment. It copies the
+latest release ZIP and verifies its checksum instead of rebuilding the plugin.
 
 The release tag identifies the exact source. Its README has the build
 instructions. When changing the bundled readers or what ships, check
@@ -28,7 +30,7 @@ examples.
    and upload that ZIP for review. Request `collage` as the slug if offered.
    The directory team assigns the final slug.
 3. After approval, extract the ZIP and copy the contents of its `collage/`
-   folder into the SVN checkout's `trunk/`. Tag the same files as `tags/0.2.2/`.
+   folder into the SVN checkout's `trunk/`. Tag the same files as `tags/0.2.3/`.
    Keep the directory readme's stable tag in sync with the release.
 4. Copy the icons, banners, numbered screenshots, and `blueprints/` directory from
    `.wordpress-org/` into the SVN checkout's top-level `assets/` directory.

@@ -75,7 +75,7 @@ jobs:
     needs: [build, readers]
     runs-on: ubuntu-24.04
     permissions:
-      actions: read
+      actions: write
       contents: write
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -92,3 +92,7 @@ jobs:
           gh release create "$GITHUB_REF_NAME" dist/collage.zip dist/collage.zip.sha256 \
             --verify-tag --title "Collage $version" --generate-notes \
             --notes "$(printf '%s\n\n%s' 'Install `collage.zip` under **Plugins → Add Plugin → Upload Plugin**, then open **Tools → Collage**.' "[Source and build instructions](https://github.com/$GITHUB_REPOSITORY/tree/$GITHUB_REF_NAME#build-from-source)")"
+      - name: Deploy the demo with the published ZIP
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref main

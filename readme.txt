@@ -4,7 +4,7 @@ Tags: import, documents, docx, markdown, blocks
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 0.2.2
+Stable tag: 0.2.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -57,6 +57,9 @@ No. Upload and conversion happen in one request. If conversion stops before you 
 2. Review each converted document, then create drafts one at a time or all together.
 
 == Changelog ==
+
+= 0.2.3 =
+* Center the draft confirmation in the WordPress admin content area.
 
 = 0.2.2 =
 * Select newly added documents automatically and show clearer messages when an import is interrupted.

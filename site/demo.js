@@ -30,7 +30,7 @@ addEventListener('message', (event) => {
 
 async function boot() {
     const [plugin, bridge] = await Promise.all([
-        fetch('collage.zip').then((response) => response.arrayBuffer()),
+        fetch('collage.zip', { cache: 'no-cache' }).then((response) => response.arrayBuffer()),
         fetch('collage-demo.php').then((response) => response.text()),
     ]);
     const client = await startPlaygroundWeb({

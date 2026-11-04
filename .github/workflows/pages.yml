@@ -29,17 +29,27 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        if: github.event_name == 'pull_request'
         with:
           php-version: '8.2'
           extensions: zip
           tools: composer
           coverage: none
-      - name: Build the plugin and the demo page
+      - name: Build a demo with the PR changes
+        if: github.event_name == 'pull_request'
         run: |
           php -l site/collage-demo.php
           node --check site/demo.js
           composer dump-autoload --no-dev --optimize
           bash scripts/build-site.sh
+      - name: Build the demo with the latest release
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download --pattern 'collage.zip*' --dir dist/release
+          (cd dist/release && sha256sum -c collage.zip.sha256)
+          bash scripts/build-site.sh dist/release/collage.zip
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: dist/site
