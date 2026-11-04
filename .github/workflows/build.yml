@@ -10,6 +10,23 @@ permissions:
   contents: read
 
 jobs:
+  readers:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        with:
+          # The HTML suite exercises PHP 8.4's native HTML5 DOM parser.
+          php-version: '8.4'
+          extensions: dom, gd, intl, mbstring, zip
+          tools: composer
+          coverage: none
+      - name: Run bundled reader tests
+        run: |
+          composer dump-autoload --no-dev --optimize
+          php tests/readers/run.php
+
   build:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
@@ -29,8 +46,6 @@ jobs:
           bash scripts/setup.sh
           php .local/wp-cli.phar eval-file tests/integration.php --path=.local/wordpress
           node --check assets/admin.js
-      - name: Run bundled reader tests
-        run: php tests/readers/run.php
       - name: Build installable ZIP
         run: php scripts/build.php
       - name: Test document uploads with the installed ZIP
@@ -57,7 +72,7 @@ jobs:
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')
-    needs: build
+    needs: [build, readers]
     runs-on: ubuntu-24.04
     permissions:
       actions: read

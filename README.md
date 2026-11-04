@@ -141,7 +141,8 @@ The `Publish the demo` workflow deploys it to GitHub Pages from `main`.
 
 ## Check a build
 
-Run the standalone reader tests after generating the Composer class map:
+Run the standalone reader tests with PHP 8.4 after generating the Composer
+class map:
 
 ```sh
 php tests/readers/run.php
