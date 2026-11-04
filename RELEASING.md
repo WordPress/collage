@@ -14,7 +14,7 @@ Only the tag job publishes a release, using the ZIP from the passing build and
 its SHA-256 checksum. Use the attached `collage.zip`, not the source archive.
 
 The release tag identifies the exact source. Its README has the build
-instructions. When updating the reader revision or changing what ships, check
+instructions. When changing the bundled readers or what ships, check
 each new or changed third-party file's terms against `THIRD-PARTY.txt`. Inspect
 the built ZIP for the required license texts and notices before tagging. The
 demo uses the same ZIP build and publishes the license beside its standalone
@@ -50,6 +50,5 @@ and [Plugin Previews](https://developer.wordpress.org/plugins/wordpress-org/prev
 - Previews are sandboxed. A preview stores its result for up to an hour and
   does not publish or create media. Saving creates a draft and any supported
   embedded image attachments.
-- The upstream reader revision and license terms are in `THIRD-PARTY.txt`.
-  The repository contains the full build scripts and links to the pinned
-  reader source. The examples are original to this plugin.
+- The original reader revision and license terms are in `THIRD-PARTY.txt`.
+  The repository contains the reader source in `lib/` and the full build scripts. The examples are original to this plugin.

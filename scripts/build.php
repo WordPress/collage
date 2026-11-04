@@ -2,12 +2,12 @@
 
 $root = dirname( __DIR__ );
 if ( ! is_file( $root . '/vendor/autoload.php' ) ) {
-    fwrite( STDERR, "Run bash scripts/dependencies.sh first.\n" );
+    fwrite( STDERR, "Run composer dump-autoload --no-dev --optimize first.\n" );
     exit( 1 );
 }
 
 $files = [ 'collage.php', 'readme.txt', 'README.md', 'LICENSE', 'THIRD-PARTY.txt', 'composer.json' ];
-foreach ( [ 'assets', 'includes', 'templates', 'samples', 'vendor/composer', 'vendor/port-libs' ] as $directory ) {
+foreach ( [ 'assets', 'includes', 'templates', 'samples', 'vendor/composer', 'lib' ] as $directory ) {
     $entries = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $root . '/' . $directory, FilesystemIterator::SKIP_DOTS ) );
     foreach ( $entries as $entry ) {
         $path = substr( $entry->getPathname(), strlen( $root ) + 1 );
